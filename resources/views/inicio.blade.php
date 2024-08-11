@@ -22,7 +22,7 @@
 
     <section class="search-section">
         <h2>Entregas a domicilio en Tegucigalpa</h2>
-        <input type="text" id="search-bar" placeholder="Ingresa la dirección de entrega">
+        <button id="search-button">Ver todos los restaurantes</button>
         <button id="search-button">Buscar comida</button>
     </section>
 
