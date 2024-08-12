@@ -14,8 +14,8 @@
                 <h1>Delivery App</h1>
             </div>
             <ul class="nav-links">
-                <li><a href="#">Iniciar sesión</a></li>
-                <li><a href="#">Registrarse</a></li>
+                <li><a href="#">Bienvenido, usuario</a></li>
+                <li><a href="#">Configuración</a></li>
             </ul>
         </nav>
     </header>
