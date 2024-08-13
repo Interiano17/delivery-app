@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #000;
+    background-color: #000;
 }
 footer {
     background-color: #000;
@@ -18,22 +20,20 @@ header {
     color: #fff;
     padding: 10px;
 }
-
-div.container{
-    height: 85vh;
-    width: 100vw;
-}
-div.col{
-    align-content: center;
-    margin: 5px;
-    height: 40vh;
-    width: 49%;
-    
-}
 .nav-links {
     list-style: none;
     display: flex;
     gap: 20px;
+}
+
+div.col{
+    height: 40vh;
+    background-color: dimgrey;
+    color: #fff;
+    align-content: center;
+    margin-top: 1px;
+    font-size: x-large;
+
 }
 
 .nav-links a {

@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Admin</title>
 </head>
-<body>
+<body data-bs-theme="dark">
     <header>
         <nav>
             <div class="logo">
@@ -20,12 +20,12 @@
             </ul>
         </nav>
     </header>
-    <div id="container" class="container text-center">
+    <div class="container text-center">
         <div class="row row-cols-2">
-          <div class="col btn btn-dark ">Comercios</div>
-          <div class="col btn btn-dark ">Productos</div>
-          <div class="col btn btn-dark ">Clientes</div>
-          <div class="col btn btn-dark ">Deliverys</div>
+          <div class="col rounded btn btn-outline-dark border ">Comercios</div>
+          <div class="col rounded btn btn-outline-dark border ">Deliverys</div>
+          <div class="col rounded btn btn-outline-dark border ">Clientes</div>
+          <div class="col rounded btn btn-outline-dark border">Productos</div>
         </div>
       </div>
 
