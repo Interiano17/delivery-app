@@ -25,7 +25,6 @@ header {
     display: flex;
     gap: 20px;
 }
-
 div.col{
     height: 40vh;
     background-color: dimgrey;

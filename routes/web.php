@@ -12,3 +12,6 @@ Route::get('/inicio', function () {
 Route::get('/admin', function (){
     return view('admin');
 });
+Route::get('/admin/crear/comercio',function (){
+    return view('RegistrosModal');
+})->name('RegistrosModal');

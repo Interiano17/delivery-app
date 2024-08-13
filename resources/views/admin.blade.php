@@ -22,14 +22,27 @@
     </header>
     <div class="container text-center">
         <div class="row row-cols-2">
-          <div class="col rounded btn btn-outline-dark border ">Comercios</div>
-          <div class="col rounded btn btn-outline-dark border ">Deliverys</div>
-          <div class="col rounded btn btn-outline-dark border ">Clientes</div>
-          <div class="col rounded btn btn-outline-dark border">Productos</div>
+          <div id="comercio" class="col rounded btn btn-outline-dark border ">Comercios</div>
+          <div id="delivery" class="col rounded btn btn-outline-dark border ">Deliverys</div>
+          <div id="Cliente" class="col rounded btn btn-outline-dark border ">Clientes</div>
+          <div id="producto" class="col rounded btn btn-outline-dark border">Productos</div>
         </div>
       </div>
 
-
+<script>
+document.getElementById("comercio").addEventListener('click',function(){
+    window.location.href="{{Route('RegistrosModal')}}"
+});
+document.getElementById("comercio").addEventListener('click',function(){
+    window.location.href="#"
+});
+document.getElementById("comercio").addEventListener('click',function(){
+    window.location.href="#"
+});
+document.getElementById("comercio").addEventListener('click',function(){
+    window.location.href="#"
+});
+</script>
     <footer>
         <p>© 2024 Delivery App</p>
     </footer>
