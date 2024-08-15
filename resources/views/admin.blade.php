@@ -24,23 +24,23 @@
         <div class="row row-cols-2">
           <div id="comercio" class="col rounded btn btn-outline-dark border ">Comercios</div>
           <div id="delivery" class="col rounded btn btn-outline-dark border ">Deliverys</div>
-          <div id="Cliente" class="col rounded btn btn-outline-dark border ">Clientes</div>
+          <div id="cliente" class="col rounded btn btn-outline-dark border ">Clientes</div>
           <div id="producto" class="col rounded btn btn-outline-dark border">Productos</div>
         </div>
       </div>
 
 <script>
 document.getElementById("comercio").addEventListener('click',function(){
-    window.location.href="{{Route('RegistrosModal')}}"
+    window.location.href="{{Route('comercios.mostrar')}}"
 });
-document.getElementById("comercio").addEventListener('click',function(){
-    window.location.href="#"
+document.getElementById("delivery").addEventListener('click',function(){
+    window.location.href="{{Route('deliveries.mostrar')}}"
 });
-document.getElementById("comercio").addEventListener('click',function(){
-    window.location.href="#"
+document.getElementById("cliente").addEventListener('click',function(){
+    window.location.href="{{Route('clientes.mostrar')}}"
 });
-document.getElementById("comercio").addEventListener('click',function(){
-    window.location.href="#"
+document.getElementById("producto").addEventListener('click',function(){
+    window.location.href="{{Route('productosAdmin.mostrar')}}"
 });
 </script>
     <footer>

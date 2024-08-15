@@ -2,20 +2,35 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ComerciosController;
+use App\Http\Controllers\DeliveriesController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\OrdenesController;
+
 Route::get('/', function () {
     return view('login');
-});
+})->name('login');
 
-Route::get('/inicio', function () {
-    return view('inicio');
-});
+Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('landing.mostrar');
+
+Route::get('/inicio/ordenes', [OrdenesController::class, 'mostrarOrdenes'])->name('ordenes.mostrar');
 
 Route::get('/admin', function (){
     return view('admin');
 });
-Route::get('/admin/crear/comercio',function (){
-    return view('RegistrosModal');
-})->name('RegistrosModal');
+
+Route::get('/admin/crear/comercio', [ComerciosController::class, 'mostrarComerciosAdmin'])->name('comercios.mostrar');
+
+Route::get('/admin/clientes', [ClientesController::class, 'mostrarClientesAdmin'])->name('clientes.mostrar');
+
+Route::get('/admin/deliveries', [DeliveriesController::class, 'mostrarDeliveriesAdmin'])->name('deliveries.mostrar');
+
+Route::get('/admin/productos', [ProductosController::class, 'mostrarProductosAdmin'])->name('productosAdmin.mostrar');
+
+//Route::get('/admin/crear/comercio',function (){
+    //return view('RegistrosModal');
+//})->name('RegistrosModal');
 
 
 Route::get('/inicio/configuracion', function () {
