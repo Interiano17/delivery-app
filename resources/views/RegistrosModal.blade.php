@@ -110,15 +110,15 @@
                 <div class="form-group">
                     <label for="disponible">Disponible:</label>    
                     <select class="form-control" id="disponible" name="disponible" required>    
-                      <option value="habilitado">Habilitado</option>       
-                      <option value="disponible">Disponible</option>
+                      <option value="0">No</option>       
+                      <option value="1">SI</option>
                      </select>   
                 </div>    
                 <div class="form-group">
                     <label for="habilitado">Habilitado:</label>
                     <select class="form-control" id="habilitado" name="habilitado" required>
-                        <option value="fuera de servicio">Fuera de Servicio</option>
-                        <option value="disponible">Disponible</option>
+                        <option value="0">Fuera de Servicio</option>
+                        <option value="1">Si</option>
                     </select>
                 </div>  
                 <div class="form-group">                            
