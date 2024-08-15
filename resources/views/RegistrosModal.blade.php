@@ -150,15 +150,15 @@
                 <div class="form-group">
                     <label for="disponible">Disponible:</label>    
                     <select class="form-control" id="disponible" name="disponible" required>    
-                      <option value="habilitado">Habilitado</option>       
-                      <option value="disponible">Disponible</option>
+                      <option value="0">No</option>       
+                      <option value="1">SI</option>
                      </select>   
                 </div>    
                 <div class="form-group">
                     <label for="habilitado">Habilitado:</label>
                     <select class="form-control" id="habilitado" name="habilitado" required>
-                        <option value="fuera de servicio">Fuera de Servicio</option>
-                        <option value="disponible">Disponible</option>
+                        <option value="0">Fuera de Servicio</option>
+                        <option value="1">Si</option>
                     </select>
                 </div>  
                 <div class="form-group">                            
@@ -188,7 +188,12 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/tu-servidor-endpoint" method="post" enctype="multipart/form-data">
+                <form action="{{Route('guardar.comercio')}}" method="post" enctype="multipart/form-data">
+                  @csrf
+                  <div class="form-group">
+                    <label for="nombre">ID Comercio:</label>
+                    <input type="text" class="form-control" id="id" name="id" required>
+                    </div>
                 <div class="form-group">
                 <label for="nombre">Nombre del Comercio:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -197,10 +202,17 @@
         <label for="imagen">Imagen del Comercio:</label>
         <input type="text" class="form-control" id="imagen" name="imagen" required>      
         </div>
-        <div class="form-group">        
-        <label for="ubicacion">Ubicación:</label>
-         <input type="number" class="form-control" id="ubicacion" name="ubicacion" required>
-      
+        <div class="form-group">  
+          <div class="form-group">
+        <h3 for="ubicacion">Ubicación</h3>
+      </div>
+        <label for="latitud">Latitud:</label>
+         <input type="number" class="form-control" id="latitud" name="latitud" step="0.000001" required>
+         <label for="longitud">Longitud:</label>
+         <input type="number" class="form-control" id="longitud" name="longitud" step="0.000001" required>
+         <label for="descripcion">Descripcion:</label>
+         <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control"></textarea>
+            </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         
