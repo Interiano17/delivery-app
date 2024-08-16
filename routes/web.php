@@ -20,9 +20,6 @@ Route::get('/inicio/ordenes', [OrdenesController::class, 'mostrarOrdenes'])->nam
 Route::get('/admin', function (){
     return view('admin');
 })->name('admin');
-Route::get('/admin/crear/comercio',function (){
-    return view('RegistrosModal');})->name('RegistrosModal');
-
 Route::get('/admin/crear/comercio', [ComerciosController::class, 'mostrarComerciosAdmin'])->name('comercios.mostrar');
 
 Route::get('/admin/clientes', [ClientesController::class, 'mostrarClientesAdmin'])->name('clientes.mostrar');
@@ -35,6 +32,8 @@ Route::get('/inicio/configuracion', function () {
     return view('editar.usuario');
 });
 
-Route::post('/admin/crear/comercio/guardar', [ComercioController::class, 'guardarComercio'] 
+Route::post('/admin/crear/comercio/guardar', [ComerciosController::class, 'guardarComercio'] 
 )->name('guardar.comercio');
+
+Route::post('/admin/productos/crear',[ProductosController::class, 'crearProducto'])->name('guardar.producto');
 

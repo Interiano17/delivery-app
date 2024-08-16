@@ -25,7 +25,6 @@
 <div class="container">
   <center><h1>Clientes</h1></center> 
 </div>
-
 <table class="table">
   <thead>
       <th scope="col" name="codigo">DNI</th>
