@@ -28,6 +28,8 @@ Route::get('/admin/deliveries', [DeliveriesController::class, 'mostrarDeliveries
 
 Route::get('/admin/productos', [ProductosController::class, 'mostrarProductosAdmin'])->name('productosAdmin.mostrar');
 
+Route::get('/inicio/comercio/productos/{id}/{nombre}', [ProductosController::class, 'mostrarProductosComercio'])->name('productos.comercio');
+
 //Route::get('/admin/crear/comercio',function (){
     //return view('RegistrosModal');
 //})->name('RegistrosModal');
