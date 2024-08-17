@@ -12,7 +12,11 @@ class ComerciosController extends Controller
         $client = new Client();
 
         // API endpoint URL with your desired location and units (e.g., London, Metric units)
+
         $apiUrl = "http://127.0.0.1:8091/api/comercio/todos";
+
+        $apiUrl = "http://127.0.0.1:8091/api/comercio/obtener/todos";
+
 
         try {
             // Make a GET request to the API
@@ -30,6 +34,7 @@ class ComerciosController extends Controller
 
 
     }
+
 
     public function mostrarComerciosAdmin(){
         // Create a new Guzzle client instance
@@ -54,4 +59,5 @@ class ComerciosController extends Controller
 
 
     }
+
 }

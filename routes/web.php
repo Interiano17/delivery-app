@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\OrdenesController;
 
+use App\Http\Controllers\ComerciosController;
+
 Route::get('/', function () {
     return view('login');
 })->name('login');
@@ -30,6 +32,8 @@ Route::get('/admin/clientes', [ClientesController::class, 'mostrarClientesAdmin'
 Route::get('/admin/deliveries', [DeliveriesController::class, 'mostrarDeliveriesAdmin'])->name('deliveries.mostrar');
 
 Route::get('/admin/productos', [ProductosController::class, 'mostrarProductosAdmin'])->name('productosAdmin.mostrar');
+
+Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('comercios.mostrar');
 
 Route::get('/inicio/configuracion', function () {
     return view('editar.usuario');
