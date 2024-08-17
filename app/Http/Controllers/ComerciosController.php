@@ -46,12 +46,38 @@ class ComerciosController extends Controller
             $data = json_decode($response->getBody(), true);
 
             // Handle the retrieved weather data as needed (e.g., pass it to a view)
-            return view('RegistrosModal', ['comercios' => $data]);
+            return view('comercioAdmin', ['comercios' => $data]);
         } catch (\Exception $e) {
             // Handle any errors that occur during the API request
             return view('api_error', ['error' => $e->getMessage()]);
         }
 
 
+    }
+    
+    public function guardarComercio(Request $request){
+
+        //crear una nueva instancia Guzzle client
+        $cliente = new Client();
+
+       try {
+        //code...
+        $response = $cliente->post('http://127.0.0.1:8091/api/comercio/crear',['json'=>[
+            'id'=>$request->id,
+            'nombre'=>$request->nombre,          
+              'imagen'=>$request->imagen,
+            'ubicacion'=>[
+                'latitud'=>$request->latitud,
+                'longitud'=>$request->longitud,
+                'descripcion'=>$request->descripcion
+            ]
+   
+            ]]);
+    
+       return redirect(route('comercios.mostrar'));
+       } catch (\Exception $e) {
+        
+        return view('api_error', ['error' => $e->getMessage()]);
+       } 
     }
 }
