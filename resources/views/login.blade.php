@@ -53,7 +53,7 @@
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">¿No tienes una cuenta?</p>
-                          <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Crear cuenta</button>
+                          <a href="{{Route('nuevo.cliente')}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Crear cuenta</a>
                         </div>
       
                       </form>

@@ -31,4 +31,38 @@ class ClientesController extends Controller
 
 
     }
+
+    //metodo para crear nuevos clientes
+
+    public function crearCliente(Request $request){
+
+        //crear una nueva instancia Guzzle client
+        $cliente = new Client();
+
+       try {
+        //code...
+        $response = $cliente->post('http://127.0.0.1:8091/api/persona/crear',['json'=>[
+            'dni'=>$request->dni,
+            'primerNombre'=>$request->primerNombre,          
+              'segundoNombre'=>$request->segundoNombre,
+              'primerApellido'=>$request->primerApellido,
+              'segundoApellido'=>$request->segundoApellido,
+              'telefono'=>$request->telefono,
+              'correo'=>$request->correo,
+            'usuario'=>[
+                'nombre'=>$request->nombreUsuario,
+                'contrasenia'=>$request->contrasenia,                
+            ]
+          
+            ]]);
+    
+       return redirect(route('landing.mostrar'));
+       } catch (\Exception $e) {
+        
+        return view('api_error', ['error' => $e->getMessage()]);
+       } 
+
+
+    }
+
 }

@@ -17,6 +17,14 @@ Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('l
 
 Route::get('/inicio/ordenes', [OrdenesController::class, 'mostrarOrdenes'])->name('ordenes.mostrar');
 
+
+Route::get('/login/nueva/cuenta',function(){
+    return view('registroCliente');
+})->name('nuevo.cliente');
+
+Route::post('/login/nueva/cuenta/guardar',[ClientesController::class ,'crearCliente'])->name('guardar.cliente');
+
+
 Route::get('/admin', function (){
     return view('admin');
 })->name('admin');
