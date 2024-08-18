@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\OrdenesController;
 
+use App\Http\Controllers\ComerciosController;
+
 Route::get('/', function () {
     return view('login');
 })->name('login');
@@ -28,7 +30,7 @@ Route::post('/login/nueva/cuenta/guardar',[ClientesController::class ,'crearClie
 Route::get('/admin', function (){
     return view('admin');
 })->name('admin');
-Route::get('/admin/crear/comercio', [ComerciosController::class, 'mostrarComerciosAdmin'])->name('comercios.mostrar');
+Route::get('/admin/crear/comercio', [ComerciosController::class, 'mostrarComerciosAdmin'])->name('comercios.mostrar.admin');
 
 Route::get('/admin/clientes', [ClientesController::class, 'mostrarClientesAdmin'])->name('clientes.mostrar');
 
@@ -37,12 +39,14 @@ Route::get('/admin/deliveries', [DeliveriesController::class, 'mostrarDeliveries
 Route::get('/admin/productos', [ProductosController::class, 'mostrarProductosAdmin'])->name('productosAdmin.mostrar');
 
 
+
 Route::get('/inicio/comercio/productos/{id}/{nombre}', [ProductosController::class, 'mostrarProductosComercio'])->name('productos.comercio');
 
 //Route::get('/admin/crear/comercio',function (){
     //return view('RegistrosModal');
 //})->name('RegistrosModal');
 
+Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('comercios.mostrar');
 
 
 Route::get('/inicio/configuracion', function () {
