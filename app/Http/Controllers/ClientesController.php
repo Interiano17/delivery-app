@@ -31,4 +31,53 @@ class ClientesController extends Controller
 
 
     }
+
+    //metodo para crear nuevos clientes
+
+    public function crearCliente(Request $request){
+
+        //crear una nueva instancia Guzzle client
+        $cliente = new Client();
+
+       try {
+        //code...
+        $response = $cliente->post('http://127.0.0.1:8091/api/persona/crear',['json'=>[
+            'dni'=>$request->dni,
+            'primerNombre'=>$request->primerNombre,          
+              'segundoNombre'=>$request->segundoNombre,
+              'primerApellido'=>$request->primerApellido,
+              'segundoApellido'=>$request->segundoApellido,
+              'telefono'=>$request->telefono,
+              'correo'=>$request->correo,
+            'usuario'=>[
+                'nombre'=>$request->nombreUsuario,
+                'contrasenia'=>$request->contrasenia,                
+            ]
+          
+            ]]);
+            $data = json_decode($response->getBody(),true);
+
+            
+            $message = '<div class="alert alert-'.$data['alert'].' alert-dismissible fade show" role="alert">
+            '.$data['message'].'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+                        
+          session()->flash('message', $message);
+            if(
+                $data['status']
+            ){ 
+            return redirect(route('comercios.mostrar'));
+            }
+
+            return redirect(Route('nuevo.cliente'));
+
+       } catch (\Exception $e) {
+        
+        return view('api_error', ['error' => $e->getMessage()]);
+       } 
+
+
+    }
+
 }
