@@ -22,7 +22,7 @@ class ComerciosController extends Controller
 
             // Get the response body as an array
             $data = json_decode($response->getBody(), true);
-
+            
             // Handle the retrieved weather data as needed (e.g., pass it to a view)
             return view('inicio', ['comercios' => $data]);
         } catch (\Exception $e) {
@@ -69,7 +69,8 @@ class ComerciosController extends Controller
         try {
             // Make a GET request to the API
             $response = $client->get($apiUrl);
-
+            
+            session()->put('correo', $request->correo);
             // Get the response body as an array
             $data = json_decode($response->getBody(), true);
 

@@ -99,6 +99,7 @@ class ProductosController extends Controller
     public function mostrarProductosComercio($id, $nombre){
         // Create a new Guzzle client instance
         $client = new Client();
+        
 
         // API endpoint URL with your desired location and units (e.g., London, Metric units)
         $apiUrl = "http://127.0.0.1:8091/api/producto/obtener/comercio/{$id}";
@@ -109,9 +110,9 @@ class ProductosController extends Controller
 
             // Get the response body as an array
             $data = json_decode($response->getBody(), true);
-
+            $correo  = session('correo');
             // Handle the retrieved weather data as needed (e.g., pass it to a view)
-            return view('productosComercio', ['productos' => $data, 'nombre' => $nombre]);
+            return view('productosComercio', ['productos' => $data, 'nombre' => $nombre, 'id' => $id, 'correo' => $correo]);
         } catch (\Exception $e) {
             // Handle any errors that occur during the API request
             return view('api_error', ['error' => $e->getMessage()]);

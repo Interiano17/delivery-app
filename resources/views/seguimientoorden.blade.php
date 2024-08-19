@@ -34,19 +34,41 @@
 </body>
 <script>
     const repartidorCercano =  JSON.parse('<?php echo json_encode($repartidorCercano); ?>');
-    const comercio = JSON.parse('<?php  echo json_encode($comercio);?>')
-    var destino;
+    console.log(repartidorCercano);
+    const comercio = JSON.parse('<?php  echo json_encode($comercio);?>')//objeto completo de comercio
+    console.log("comercio: latitud: "+ comercio.ubicacion.latitud + " longitud: " + comercio.ubicacion.longitud );
+    
+    let correoUsuario = localStorage.getItem("correo");
+    let ubicacionCliente = JSON.parse('<?php echo $ubicacionCliente;?>')
+    console.log("Esta es la ubicacion del cliente: latitud: " + ubicacionCliente.latitud+ " longitud: "+ ubicacionCliente.longitud);
     
     //obtener la ubicacion de destino(ubicacion de la persona)
     //poner la ubicacion de repartidorCercano en todo lugar que se necesite
     //poner la ubicacion del comercio como waypoint
+    
+    // var xhr = new XMLHttpRequest();
 
-    fetch(`http://localhost:8091/api/persona/`)
-    .then((response) => response.json())
-    .then((data) => destino = data.ubicacion)
-    .catch((error) => console.log('Error', error))
+// Configurar la solicitud (método y URL)
+// xhr.open('GET', `http://localhost:8091/api/persona/${correoUsuario}`, true);
 
-    const ubicacionDestino = JSON.parse('<?php echo json_encode($ubicacionDestino)?>')
+// // Configurar una función para manejar la respuesta
+// xhr.onreadystatechange = function () {
+//     if (xhr.readyState === 4) { // La solicitud está completa
+//         if (xhr.status === 200) { // La solicitud fue exitosa
+//             // Procesar la respuesta
+//             console.log(xhr.responseText);
+//         } else {
+//             // Manejar errores
+//             console.error('Error en la solicitud: ' + xhr.status);
+//         }
+//     }
+// };
+
+// Enviar la solicitud
+xhr.send();
+
+    const ubicacionDestino = destino;
+    // const ubicacionDestino = destino;
     console.log(repartidorCercano)
     function initMap(){
         map =  new google.maps.Map(document.getElementById("map"),{
@@ -102,17 +124,17 @@
 
         directions.route(route,function(response, status) { // anonymous function to capture directions
             if (status !== 'OK') {
-                window.alert('Directions request failed due to ' + status);
+                window.alert('La peticion de rutaa ha fallado ' + status);
                 return;
             } else {
                 directionsRenderer.setDirections(response); // Add route to the map
                 var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
                 if (!directionsData) {
-                    window.alert('Directions request failed');
+                    window.alert('Fallo la peticion');
                     return;
                 }
                 else {
-                    console.log(" Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").")
+                    console.log(" La distancia es " + directionsData.distance.text + " (" + directionsData.duration.text + ").")
                 }
             }
         })

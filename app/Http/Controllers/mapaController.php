@@ -25,7 +25,7 @@ class mapaController extends Controller
     // }
 
 
-    public function mostrarUbicaciones(Request $request){
+    public function mostrarUbicaciones(Request $request, String $correo){
         $client = new Client();
 
         // API endpoint URL with your desired location and units (e.g., London, Metric units)
@@ -34,19 +34,24 @@ class mapaController extends Controller
         try {
             // Make a GET request to the API
             $response = $client->get($apiUrl);
-
+            
             // Get the response body as an array
             $data = json_decode($response->getBody(), true);
-
+            //echo  json_encode($data) ;
             $repartidor = $this->repartidorMasCercano($request,$client);
-
+            // echo json_encode($repartidor);
+            // echo ".................";
             $comercio = $this->obtenerComercio($request, $client);
-
-            $destino = $this->obtenerUbicacionDestino($request, $client);
+            // echo json_encode($comercio);
+            // echo "---------";
+            $cliente = $this->obtenerUbicacionDestino($request, $client, $correo);
+            $ubicacionCliente = json_encode($cliente['ubicacion']);
+            // echo $ubicacionCliente;
+            // echo "---------";
             // Handle the retrieved weather data as needed (e.g., pass it to a view)
             return view('seguimientoorden', 
                 ['infos' => $data, 'repartidorCercano' => $repartidor,
-                'comercio' => $comercio, 'ubicacionDestino' => $destino]);
+                'comercio' => $comercio, 'ubicacionCliente'=> $ubicacionCliente]);
             //$data es un arreglo con todos los repartidores disponibles en este momento
         } catch (\Exception $e) {
             // Handle any errors that occur during the API request
@@ -86,14 +91,14 @@ class mapaController extends Controller
     }
 
     public function obtenerUbicacionDestino(Request $request, Client $client){
-        $comercioID = $request->route('id');
-        $apiUrl = "http://localhost:8091/api/persona/$comercioID";
+        $correoCliente = $request->route('correo');
+        $apiUrl = "http://localhost:8091/api/persona/correo/".$correoCliente;
         try {
             $response = $client->get($apiUrl);
 
-            $comercio = json_decode($response->getBody(), true);
+            $persona = json_decode($response->getBody(), true);
             
-            return $comercio;
+            return $persona;
         } catch (\Exception $e) {
             
             return view('api_error', ['error' => $e->getMessage()]);

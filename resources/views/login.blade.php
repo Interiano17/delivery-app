@@ -85,6 +85,7 @@
       buttonLogin.addEventListener("click", function() {
         let correo = document.getElementById("correo").value;
         localStorage.setItem("correo", correo);
+        localStorage.setItem("carrito",null);
       });
     </script>
 

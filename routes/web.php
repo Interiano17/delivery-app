@@ -9,7 +9,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\mapaController;
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 })->name('login');
 
@@ -77,4 +77,4 @@ Route::get('/admin/producto/editar/{id}',[ProductosController::class, 'editarPro
 route::get('/admin/editar/producto/save/{id}',[ProductosController::class,'editarProductoSave'])->name('editar.producto');
 
 
-Route::get('/inicio/comercio/productos/{id}/{nombre}/seguimientoorden', [mapaController::class, 'mostrarUbicaciones'])->name('seguimientoorden') ;
+Route::get('/inicio/comercio/productos/{id}/{nombre}/seguimientoorden/{correo}', [mapaController::class, 'mostrarUbicaciones'])->name('seguimientoorden') ;

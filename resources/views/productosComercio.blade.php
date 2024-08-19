@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery App</title>
-    <link rel="stylesheet" href="../../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="{{ asset('/../resources/css/styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 <body>
@@ -16,6 +16,12 @@
             <ul class="nav-links">
                 <li><h5 style="color:white" id="welcome">Bienvenido, usuario</h5></li>
                 <li>
+                  <button  type="button" class="btn btn-info">
+
+                    <a href="{{ route('seguimientoorden',['id' => $id, 'nombre'=> $nombre, 'correo' => $correo]) }}">
+                      Ver orden
+                    </a>  
+                  </button>
                   <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Carrito
                   </button>
@@ -77,8 +83,7 @@
     const userCardTemplate = document.querySelector(".restaurant-grid")
     const userCardContainer = document.querySelector(".featured-section")
     const searchInput = document.querySelector("[data-search]")
-
-// var productos = {!! json_encode($productos) !!};
+var productos = {!! json_encode($productos) !!};
 
 var cards = userCardTemplate.innerHTML
 
@@ -95,13 +100,13 @@ searchInput.addEventListener("input", e => {
         productosFilter.push(producto)
     }
   })
+              
   userCardTemplate.innerHTML = ``
   productosFilter.forEach(productoFilter => {
-    
+    let rutaImagen = "{{ asset('/../public/') }}";
     userCardTemplate.innerHTML += `<div class="col">
               <div class="card">
-                // <img src="{{ asset(productoFilter.imagen) }}" width="300px" height="290px" class="card-img-top" alt="imagen">
-                <img src=${productoFilter.imagen} width="300px" height="290px" class="card-img-top" alt="imagen">
+                <img src=${rutaImagen}/${productoFilter.imagen} width="300px" height="290px" class="card-img-top" alt="imagen">
                 <div class="card-body">
                   <h5 class="card-title">${productoFilter.nombre}</h5>
                   <h6 class="card-title">${productoFilter.descripcion}</h6>
