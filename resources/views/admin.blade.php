@@ -31,7 +31,7 @@
 
 <script>
 document.getElementById("comercio").addEventListener('click',function(){
-    window.location.href="{{Route('comercios.mostrar')}}"
+    window.location.href="{{Route('comercios.mostrar.admin')}}"
 });
 document.getElementById("delivery").addEventListener('click',function(){
     window.location.href="{{Route('deliveries.mostrar')}}"
@@ -40,7 +40,7 @@ document.getElementById("cliente").addEventListener('click',function(){
     window.location.href="{{Route('clientes.mostrar')}}"
 });
 document.getElementById("producto").addEventListener('click',function(){
-    window.location.href="{{Route('productosAdmin.mostrar')}}"
+    window.location.href="{{Route('productos.admin.mostrar')}}"
 });
 </script>
     <footer>
