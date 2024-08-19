@@ -23,7 +23,10 @@
 </header>
 
 <div class="container">
-  <center><h1>Productos</h1></center> 
+  <center><h1>Productos</h1></center>
+  @if (session('message'))
+  {!!(session('message'))!!}
+@endif 
 </div>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoProducto">
@@ -46,8 +49,8 @@
               <td>{{ trim(json_encode(trim($producto['nombre'])), '"') }}</td>
               <td>{{ trim(json_encode(trim($producto['descripcion'])), '"') }}</td>
               <td>{{ trim(json_encode(trim($producto['precio'])), '"') }}</td>
-              <td><a href="" class="btn btn-info">Ver</a></td>
-              <td><a href="" class="btn btn-success">Editar</a></td>
+              <td><a href="{{Route('ver.producto',trim(json_encode(trim($producto['id'])), '"') )}}" class="btn btn-info">Ver</a></td>
+              <td><a href="{{Route('editar.producto.admin',trim(json_encode(trim($producto['id'])), '"') )}}" class="btn btn-success">Editar</a></td>
           </tr>
           @endforeach
   </tbody>

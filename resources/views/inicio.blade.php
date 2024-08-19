@@ -23,11 +23,6 @@
                   Salir de cuenta
                 </a>
 
-                <li><h5 style="color:white">Mis órdenes</h5></li>
-                <li><button type="button" class="btn btn-danger">
-                  Salir de cuenta
-                </button>
-
                 </li>
             </ul>
         </nav>

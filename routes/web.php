@@ -1,15 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ComercioController;
 
 use App\Http\Controllers\ComerciosController;
 use App\Http\Controllers\DeliveriesController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\OrdenesController;
-
-use App\Http\Controllers\ComerciosController;
 
 Route::get('/', function () {
     return view('login');
@@ -36,7 +33,7 @@ Route::get('/admin/clientes', [ClientesController::class, 'mostrarClientesAdmin'
 
 Route::get('/admin/deliveries', [DeliveriesController::class, 'mostrarDeliveriesAdmin'])->name('deliveries.mostrar');
 
-Route::get('/admin/productos', [ProductosController::class, 'mostrarProductosAdmin'])->name('productosAdmin.mostrar');
+Route::get('/admin/productos', [ProductosController::class, 'mostrarProductosAdmin'])->name('productos.admin.mostrar');
 
 
 
@@ -57,4 +54,20 @@ Route::post('/admin/crear/comercio/guardar', [ComerciosController::class, 'guard
 )->name('guardar.comercio');
 
 Route::post('/admin/productos/crear',[ProductosController::class, 'crearProducto'])->name('guardar.producto');
+
+
+route::get('/admin/comercio/editar/{id}',[ComerciosController::class, 'editarComercio'])->name('editar.comercio');
+
+Route::get('/admin/comercio/editar/save/{id}',[ComerciosController::class, 'editarComercioSave'])->name('editar.comercio.guardar');
+
+
+route::get('/admin/comercio/ver/{id}',[ComerciosController::class, 'verComercioAdmin'])->name('admin.comercio.ver');
+
+Route::get('/admin/producto/ver/{id}', [ProductosController::class, 'verProductosAdmin'])->name('ver.producto');
+
+
+Route::get('/admin/producto/editar/{id}',[ProductosController::class, 'editarProducto'])->name('editar.producto.admin');
+
+route::get('/admin/editar/producto/save/{id}',[ProductosController::class,'editarProductoSave'])->name('editar.producto');
+
 

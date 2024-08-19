@@ -55,8 +55,23 @@ class ClientesController extends Controller
             ]
           
             ]]);
-    
-       return redirect(route('landing.mostrar'));
+            $data = json_decode($response->getBody(),true);
+
+            
+            $message = '<div class="alert alert-'.$data['alert'].' alert-dismissible fade show" role="alert">
+            '.$data['message'].'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+                        
+          session()->flash('message', $message);
+            if(
+                $data['status']
+            ){ 
+            return redirect(route('comercios.mostrar'));
+            }
+
+            return redirect(Route('nuevo.cliente'));
+
        } catch (\Exception $e) {
         
         return view('api_error', ['error' => $e->getMessage()]);
