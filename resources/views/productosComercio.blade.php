@@ -78,7 +78,7 @@
     const userCardContainer = document.querySelector(".featured-section")
     const searchInput = document.querySelector("[data-search]")
 
-var productos = {!! json_encode($productos) !!};
+// var productos = {!! json_encode($productos) !!};
 
 var cards = userCardTemplate.innerHTML
 
