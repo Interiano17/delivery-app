@@ -7,10 +7,15 @@ use App\Http\Controllers\DeliveriesController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\OrdenesController;
+use App\Http\Controllers\mapaController;
 
 Route::get('/', function () {
     return view('login');
 })->name('login');
+
+Route::get('/signup', function (){
+    return view('signUp');
+})->name('signup');
 
 Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('landing.mostrar');
 Route::get('/validar/usuario', [ComerciosController::class, 'validarUsuario'])->name('validar.usuario');
@@ -72,3 +77,4 @@ Route::get('/admin/producto/editar/{id}',[ProductosController::class, 'editarPro
 route::get('/admin/editar/producto/save/{id}',[ProductosController::class,'editarProductoSave'])->name('editar.producto');
 
 
+Route::get('/inicio/comercio/productos/{id}/{nombre}/seguimientoorden', [mapaController::class, 'mostrarUbicaciones'])->name('seguimientoorden') ;

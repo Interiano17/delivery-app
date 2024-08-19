@@ -28,7 +28,7 @@
       
                       <div class="text-center">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                          style="width: 185px;" alt="logo">
+                          style="width: 185px;" alt="">
                           <h4 class="mt-1 mb-5 pb-1">Inicio de sesión</h4>
                       </div>
       

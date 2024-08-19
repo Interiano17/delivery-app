@@ -54,7 +54,8 @@
           
             <div class="col">
               <div class="card">
-                <img src={{ trim(json_encode(trim($producto['imagen'])), '"') }} width="300px" height="290px" class="card-img-top" alt="imagen">
+                <img src="{{ asset(trim($producto['imagen'])) }}" width="300px" height="290px" class="card-img-top" alt="imagen">
+                <!-- <img src={{ trim(json_encode(trim($producto['imagen'])), '"') }} width="300px" height="290px" class="card-img-top" alt="imagen"> -->
                 <div class="card-body">
                   <h5 class="card-title">{{ trim(json_encode(trim($producto['nombre'])), '"') }}</h5>
                   <h6 class="card-title">{{ trim(json_encode(trim($producto['descripcion'])), '"') }}</h6>
@@ -99,6 +100,7 @@ searchInput.addEventListener("input", e => {
     
     userCardTemplate.innerHTML += `<div class="col">
               <div class="card">
+                // <img src="{{ asset(productoFilter.imagen) }}" width="300px" height="290px" class="card-img-top" alt="imagen">
                 <img src=${productoFilter.imagen} width="300px" height="290px" class="card-img-top" alt="imagen">
                 <div class="card-body">
                   <h5 class="card-title">${productoFilter.nombre}</h5>

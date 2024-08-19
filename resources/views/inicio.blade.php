@@ -34,7 +34,7 @@
         <h2>Restaurantes</h2>
         <div class="restaurant-grid row row-cols-1 row-cols-md-4 g-4">
           @foreach ($comercios as $comercio)
-          <a href={{ route('productos.comercio', [trim(json_encode(trim($comercio['id'])), '"'), trim(json_encode(trim($comercio['nombre'])))]) }}>
+          <a href="{{ route('productos.comercio', [trim(json_encode(trim($comercio['id'])), '"'), trim(json_encode(trim($comercio['nombre'])))]) }}">
             <div class="col">
               <div class="card">
                 <img src={{ trim(json_encode($comercio['imagen']), '"') }} width="300px" height="290px" class="card-img-top" alt="imagen">
