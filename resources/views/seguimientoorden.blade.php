@@ -12,6 +12,20 @@
             height: 85vh;
             width: 80vw;
         }
+        #factura{
+            height: 70vh;
+            width: 20vw;
+            border-radius: 1rem;
+            position: absolute;
+            right: 0.5rem;
+            top: 15vh;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 1rem;
+            justify-content: space-between;
+
+        }
 
     </style>
 </head>
@@ -26,6 +40,11 @@
     <div class="container-fluid my-3 mx-auto d-flex justify-content-center">
     
         <div id="map"></div>
+        <div id="factura"> 
+            <h3>Factura total</h3>
+            <h4>costo base: L. 50</h4>
+            
+        </div>
 
     </div>
     <footer>
@@ -33,13 +52,14 @@
     </footer>
 </body>
 <script>
-    const repartidorCercano =  JSON.parse('<?php echo json_encode($repartidorCercano); ?>');
-    console.log(repartidorCercano);
+    const repartidorCercano =  JSON.parse('<?php echo json_encode($repartidorCercano); ?>');//objeto completo de repartidor
+    console.log("este es el repartidor cercano: " + repartidorCercano);
+    console.log("Ubicacion del repartidor: lat:" + repartidorCercano.ubicacion.latitud + " longitud: " + repartidorCercano.ubicacion.longitud);
     const comercio = JSON.parse('<?php  echo json_encode($comercio);?>')//objeto completo de comercio
-    console.log("comercio: latitud: "+ comercio.ubicacion.latitud + " longitud: " + comercio.ubicacion.longitud );
-    
+    console.log("ubicacion del comercio: latitud: "+ comercio.ubicacion.latitud + " longitud: " + comercio.ubicacion.longitud );
+
     let correoUsuario = localStorage.getItem("correo");
-    let ubicacionCliente = JSON.parse('<?php echo $ubicacionCliente;?>')
+    let ubicacionCliente = JSON.parse('<?php echo $ubicacionCliente;?>')//objeto de ubicacion del cliente
     console.log("Esta es la ubicacion del cliente: latitud: " + ubicacionCliente.latitud+ " longitud: "+ ubicacionCliente.longitud);
     
     //obtener la ubicacion de destino(ubicacion de la persona)
@@ -65,11 +85,7 @@
 // };
 
 // Enviar la solicitud
-xhr.send();
 
-    const ubicacionDestino = destino;
-    // const ubicacionDestino = destino;
-    console.log(repartidorCercano)
     function initMap(){
         map =  new google.maps.Map(document.getElementById("map"),{
             center: { lat: 14.088752345373827, lng: -87.18425930523999},
@@ -77,9 +93,9 @@ xhr.send();
             mapId: '7cb31370a4c118bc'})
         
         //solo de prueba
-        localStorage.setItem("ubicacionDestino",JSON.stringify( { latitud: 14.084818012234761, longitud: -87.16209643407598 } ) )
+        // localStorage.setItem("ubicacionDestino",JSON.stringify( { latitud: 14.084818012234761, longitud: -87.16209643407598 } ) )
         //let info = [ { ubicacion: { latitud: 14.092082987904433, longitud: -87.1905835151332 } } ]
-        localStorage.setItem("ubicacionComercio", JSON.stringify( { latitud: 14.09796650253568, longitud:  -87.17859427114853 } ) )
+        // localStorage.setItem("ubicacionComercio", JSON.stringify( { latitud: 14.09796650253568, longitud:  -87.17859427114853 } ) )
         let info = JSON.parse('<?php echo json_encode($infos); ?>');
         console.log(info)
 
@@ -95,9 +111,8 @@ xhr.send();
             }) 
         });
 
-        const destino = JSON.parse(localStorage.getItem("ubicacionDestino"))
         new google.maps.Marker({
-                position: { lat: destino.latitud , lng: destino.longitud },
+                position: { lat: ubicacionCliente.latitud , lng: ubicacionCliente.longitud },
                 map,
                 icon: {
                     url: "{{ asset('/finish_line.svg') }}",
@@ -106,25 +121,25 @@ xhr.send();
                 }
             })
         
-        const ubicacionComercio = JSON.parse(localStorage.getItem("ubicacionComercio"))
+        // const ubicacionComercio = comercio.ubicacion;
 
         let directions = new google.maps.DirectionsService();
         let directionsRenderer = new google.maps.DirectionsRenderer();
         directionsRenderer.setMap(map)
-        console.log(info[info.length-1].ubicacion.latitud)
+
         const route = {
             // origin: { lat: info[1].ubicacion.latitud, lng: info[1].ubicacion.latitud },
-            origin: new google.maps.LatLng(info[info.length-1].ubicacion.latitud, info[info.length-1].ubicacion.longitud)  ,
-            waypoints: [ { location: new google.maps.LatLng(ubicacionComercio.latitud, ubicacionComercio.longitud) , stopover: false } ],
+            origin: new google.maps.LatLng(repartidorCercano.ubicacion.latitud, repartidorCercano.ubicacion.longitud)  ,
+            waypoints: [ { location: new google.maps.LatLng(comercio.ubicacion.latitud, comercio.ubicacion.longitud) , stopover: false } ],
             // new google.maps.LatLng(ubicacionComercio.latitud, ubicacionComercio.longitud)
             // destination: { lat: destino.latitud, lng: destino.longitud },
-            destination: new google.maps.LatLng(destino.latitud, destino.longitud),
+            destination: new google.maps.LatLng(ubicacionCliente.latitud, ubicacionCliente.longitud),
             travelMode: 'DRIVING'
         }
 
         directions.route(route,function(response, status) { // anonymous function to capture directions
             if (status !== 'OK') {
-                window.alert('La peticion de rutaa ha fallado ' + status);
+                window.alert('La peticion de ruta ha fallado ' + status);
                 return;
             } else {
                 directionsRenderer.setDirections(response); // Add route to the map
@@ -134,6 +149,12 @@ xhr.send();
                     return;
                 }
                 else {
+                    let factura = document.querySelector("#factura");
+
+                    factura.innerHTML = `<h3>Factura total</h3>
+                    <h4>costo base: L. 50</h4>
+                    <h4>costo por Km: L. 5</h4>
+                    <h4>Costo total: L. ${(parseFloat(directionsData.distance.text)*5) + 50}</h4>`
                     console.log(" La distancia es " + directionsData.distance.text + " (" + directionsData.duration.text + ").")
                 }
             }
