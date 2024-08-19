@@ -77,18 +77,20 @@ var cards = userCardTemplate.innerHTML
 console.log(productos)
 
 searchInput.addEventListener("input", e => {
+  var productosFilter = []
   const value = e.target.value.toLowerCase()
 
-  productosFilter = []
+  
   productos.forEach(producto => {
     const isVisible = producto.nombre.toLowerCase().includes(value)
     if(isVisible){
         productosFilter.push(producto)
     }
   })
+  userCardTemplate.innerHTML = ``
   productosFilter.forEach(productoFilter => {
-    userCardTemplate.innerHTML = ``
-    userCardTemplate.innerHTML = `<div class="col">
+    
+    userCardTemplate.innerHTML += `<div class="col">
               <div class="card">
                 <img src=${productoFilter.imagen} width="300px" height="290px" class="card-img-top" alt="imagen">
                 <div class="card-body">
@@ -106,6 +108,7 @@ searchInput.addEventListener("input", e => {
   if(value.length == 0){
     userCardTemplate.innerHTML = cards
   }
+
 
 }
 )

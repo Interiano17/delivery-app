@@ -14,7 +14,7 @@
                 <h1>Delivery App</h1>
             </div>
             <ul class="nav-links">
-                <li><h5 style="color:white">Bienvenido, usuario</h5></li>
+                <li><h5 style="color:white" id="welcome">Bienvenido, usuario</h5></li>
                 <li><button type="button" class="btn btn-success">
                   Mis órdenes
                 </button></li>
@@ -27,8 +27,7 @@
     </header>
 
     <section class="search-section">
-        <h2>Entregas a domicilio en Tegucigalpa</h2>
-        <button id="search-button">Buscar comida</button>
+        <h1>Entregas a domicilio en Tegucigalpa</h1>
     </section>
 
     <section class="container featured-section">
@@ -49,7 +48,10 @@
         </div>
     </section>
 
-    
+    <script>
+      var welcome = document.getElementById("welcome");
+      welcome.innerHTML = `Bienvenido, ${localStorage.getItem("correo")}`;
+    </script>
 
     <script src="../resources/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
