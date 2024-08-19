@@ -13,6 +13,7 @@ Route::get('/', function () {
 })->name('login');
 
 Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('landing.mostrar');
+Route::get('/validar/usuario', [ComerciosController::class, 'validarUsuario'])->name('validar.usuario');
 
 Route::get('/inicio/ordenes', [OrdenesController::class, 'mostrarOrdenes'])->name('ordenes.mostrar');
 
