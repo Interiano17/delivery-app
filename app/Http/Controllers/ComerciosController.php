@@ -12,7 +12,9 @@ class ComerciosController extends Controller
         $client = new Client();
 
         // API endpoint URL with your desired location and units (e.g., London, Metric units)
+
         $apiUrl = "http://127.0.0.1:8091/api/comercio/todos";
+
 
         try {
             // Make a GET request to the API
@@ -30,6 +32,32 @@ class ComerciosController extends Controller
 
 
     }
+    public function editarComercio($id){
+ // Create a new Guzzle client instance
+ $client = new Client();
+
+ // API endpoint URL with your desired location and units (e.g., London, Metric units)
+
+ $apiUrl = "http://127.0.0.1:8091/api/comercio/".$id;
+
+
+ try {
+     // Make a GET request to the API
+     $response = $client->get($apiUrl);
+
+     // Get the response body as an array
+     $data = json_decode($response->getBody(), true);
+
+     // Handle the retrieved weather data as needed (e.g., pass it to a view)
+     return view('editarcomercio', ['comercio' => $data]);
+ } catch (\Exception $e) {
+     // Handle any errors that occur during the API request
+     return view('api_error', ['error' => $e->getMessage()]);
+ }
+
+
+    }
+
 
     public function validarUsuario(Request $request){
         // Create a new Guzzle client instance
@@ -80,6 +108,7 @@ class ComerciosController extends Controller
 
 
     }
+
     
     public function guardarComercio(Request $request){
 
@@ -99,11 +128,94 @@ class ComerciosController extends Controller
             ]
    
             ]]);
-    
-       return redirect(route('comercios.mostrar'));
+            $data = json_decode($response->getBody(),true);
+
+            
+            $message = '<div class="alert alert-'.$data['alert'].' alert-dismissible fade show" role="alert">
+            '.$data['message'].'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+                        
+          session()->flash('message', $message);
+            if(
+                $data['status']
+            ){ 
+            return redirect(route('comercios.mostrar.admin'));
+            }
+
+            return redirect(route('comercios.mostrar.admin'));
+           
+      
        } catch (\Exception $e) {
         
         return view('api_error', ['error' => $e->getMessage()]);
        } 
     }
+
+    public function editarComercioSave($id,Request $request){
+     
+            // Crear una nueva instancia de Guzzle Client
+            $cliente = new Client();
+        
+            try {
+                // Realizar la solicitud PUT
+                $response = $cliente->put("http://127.0.0.1:8091/api/comercio/editar/{$id}", [
+                    'json' => [
+                        'nombre' => $request->nombre,
+                        'imagen' => $request->imagen,
+                        'ubicacion' => [
+                            'latitud' => $request->latitud,
+                            'longitud' => $request->longitud,
+                            'descripcion' => $request->descripcion
+                        ]
+                    ]
+                ]);
+        
+                // Decodificar la respuesta JSON
+                $data = json_decode($response->getBody(), true);
+        
+                // Mostrar la respuesta JSON
+                echo json_encode($data);
+        
+                // Redirigir en función del estado de la respuesta
+                if (isset($data['status']) && $data['status']) {
+                    return redirect()->route('comercios.mostrar.admin');
+                }
+        
+                return redirect()->route('comercios.mostrar.admin');
+        
+            } catch (\Exception $e) {
+                // Manejar errores y mostrar vista de error
+                return view('api_error', ['error' => $e->getMessage()]);
+            }
+        
+        
+
+    }
+
+    public function verComercioAdmin($id){
+        // Create a new Guzzle client instance
+ $client = new Client();
+
+ // API endpoint URL with your desired location and units (e.g., London, Metric units)
+
+ $apiUrl = "http://127.0.0.1:8091/api/comercio/".$id;
+
+
+ try {
+     // Make a GET request to the API
+     $response = $client->get($apiUrl);
+
+     // Get the response body as an array
+     $data = json_decode($response->getBody(), true);
+
+     // Handle the retrieved weather data as needed (e.g., pass it to a view)
+     return view('verComercio', ['comercio' => $data]);
+ } catch (\Exception $e) {
+     // Handle any errors that occur during the API request
+     return view('api_error', ['error' => $e->getMessage()]);
+ }
+
+    }
+
 }

@@ -14,13 +14,19 @@
                 <h1>Delivery App</h1>
             </div>
             <ul class="nav-links">
+
+                <li><h5 style="color:white">Bienvenido, usuario</h5></li>
+
+
                 <li><h5 style="color:white" id="welcome">Bienvenido, usuario</h5></li>
+
                 <li><button type="button" class="btn btn-success">
                   Mis órdenes
                 </button></li>
                 <li><a href={{ route('login') }} class="btn btn-danger">
                   Salir de cuenta
                 </a>
+
                 </li>
             </ul>
         </nav>
