@@ -32,28 +32,29 @@
                           <h4 class="mt-1 mb-5 pb-1">Inicio de sesión</h4>
                       </div>
       
-                      <form>
+                      <form action="{{Route('validar.usuario')}}" method="GET">
+                        @csrf
                         <label class="form-label" for="form2Example11">Correo Electrónico</label>
       
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <input type="email" id="form2Example11" class="form-control"
+                          <input type="email" id="correo" name="correo" class="form-control"
                             placeholder="Ingresa tu correo electrónico" />
                         </div>
       
                         <label class="form-label" for="form2Example22">Contraseña</label>
 
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <input type="password" id="form2Example22" class="form-control"
+                          <input type="password" id="contrasenia" name="contrasenia" class="form-control"
                           placeholder="Ingresa tu contraseña" />                         
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Iniciar sesión</button>
+                          <button data-mdb-button-init data-mdb-ripple-init id="buttonLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar sesión</button>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">¿No tienes una cuenta?</p>
-                          <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Crear cuenta</button>
+                          <a href="{{Route('nuevo.cliente')}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Crear cuenta</a>
                         </div>
       
                       </form>
@@ -78,7 +79,15 @@
         <p>© 2024 Delivery App</p>
     </footer>
 
-    <script src="../resources/js/script.js"></script>
+    <script>
+      var buttonLogin = document.getElementById("buttonLogin");
+
+      buttonLogin.addEventListener("click", function() {
+        let correo = document.getElementById("correo").value;
+        localStorage.setItem("correo", correo);
+      });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
