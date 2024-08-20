@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\mapaController;
+use App\Http\Controllers\CompraController;
 
 Route::get('/login', function () {
     return view('login');
@@ -49,7 +50,7 @@ Route::get('/inicio/comercio/productos/{id}/{nombre}', [ProductosController::cla
     //return view('RegistrosModal');
 //})->name('RegistrosModal');
 
-Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('comercios.mostrar');
+// Route::get('/inicio', [ComerciosController::class, 'mostrarComercios'])->name('comercios.mostrar');
 
 
 Route::get('/inicio/configuracion', function () {
@@ -78,3 +79,7 @@ route::get('/admin/editar/producto/save/{id}',[ProductosController::class,'edita
 
 
 Route::get('/inicio/comercio/productos/{id}/{nombre}/seguimientoorden/{correo}', [mapaController::class, 'mostrarUbicaciones'])->name('seguimientoorden') ;
+
+
+
+Route::post('/confirmacion/compra', [CompraController::class ,'guardarFactura'])->name('compra');

@@ -23,7 +23,7 @@
             flex-direction: column;
             background-color: white;
             padding: 1rem;
-            justify-content: space-between;
+            justify-content: space-around;
 
         }
 
@@ -52,6 +52,7 @@
     </footer>
 </body>
 <script>
+
     const repartidorCercano =  JSON.parse('<?php echo json_encode($repartidorCercano); ?>');//objeto completo de repartidor
     console.log("este es el repartidor cercano: " + repartidorCercano);
     console.log("Ubicacion del repartidor: lat:" + repartidorCercano.ubicacion.latitud + " longitud: " + repartidorCercano.ubicacion.longitud);
@@ -150,10 +151,19 @@
                 }
                 else {
                     let factura = document.querySelector("#factura");
-
+                    // let productosHTML = "";
+                    // let productosComprados = JSON.parse(localStorage.getItem("carrito"))
+                    // let totalCompra = 0;
+                    // for (let i in productosComprados){
+                    //     let cantidad = parseInt(productosComprados.cantidad);
+                    //     let precio = parseFloat(productosComprados.precio);
+                    //     totalCompra+= cantidad*precio;
+                    // }
+                    // productosComprados+="<>"
                     factura.innerHTML = `<h3>Factura total</h3>
                     <h4>costo base: L. 50</h4>
                     <h4>costo por Km: L. 5</h4>
+
                     <h4>Costo total: L. ${(parseFloat(directionsData.distance.text)*5) + 50}</h4>`
                     console.log(" La distancia es " + directionsData.distance.text + " (" + directionsData.duration.text + ").")
                 }
@@ -163,11 +173,5 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCPrywMVc3u2xDWgwamhcxsGGDiExQT00&map_ids=7cb31370a4c118bc&callback=initMap" defer>
 </script>
-
-<!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-    key: "AIzaSyCVkBVA5djfVzi_ddSdNLxTt3TPES5m0Is", v: "weekly"});</script> -->
-
-
-
 
 </html>

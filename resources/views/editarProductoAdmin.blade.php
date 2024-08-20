@@ -51,10 +51,15 @@
     </select>
             </div>                
        
-        <div class="row">
+        <!-- <div class="row">
             <div class="col">
                 <a href="{{Route('productos.admin.mostrar')}}" class="col"><button type="button" class="btn btn-secondary form-control" data-bs-dismiss="modal">Regresar</button></a>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
             </div>
+        </div> -->
+        <div class="row">
+            <a href="{{Route('productos.admin.mostrar')}}" class="col"><button type="button" class="btn btn-secondary form-control" data-bs-dismiss="modal">Cancelar</button></a>
+            <div class="col"><button type="submit" class="btn btn-primary form-control">Guardar</button></div>
         </div>
     </div>
         

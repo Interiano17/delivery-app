@@ -46,6 +46,7 @@ class mapaController extends Controller
             // echo "---------";
             $cliente = $this->obtenerUbicacionDestino($request, $client, $correo);
             $ubicacionCliente = json_encode($cliente['ubicacion']);
+            
             // echo $ubicacionCliente;
             // echo "---------";
             // Handle the retrieved weather data as needed (e.g., pass it to a view)

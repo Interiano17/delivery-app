@@ -111,7 +111,7 @@ searchInput.addEventListener("input", e => {
                   <h5 class="card-title">${productoFilter.nombre}</h5>
                   <h6 class="card-title">${productoFilter.descripcion}</h6>
                   <h6 class="card-title">Precio: Lps. ${productoFilter.precio}</h6>
-                  <button type="button" class="btn btn-info">
+                  <button onclick="agregarAlCarrito('${productoFilter.id}', ${productoFilter.precio})"  type="button" class="btn btn-info">
                     Agregar al Carrito
                   </button>
                 </div>
