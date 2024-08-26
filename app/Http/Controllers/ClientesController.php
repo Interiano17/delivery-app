@@ -55,8 +55,9 @@ class ClientesController extends Controller
             ]
           
             ]]);
+            session()->put('correo', $request->correo);
+            // echo json_encode($response->getBody(),true);
             $data = json_decode($response->getBody(),true);
-
             
             $message = '<div class="alert alert-'.$data['alert'].' alert-dismissible fade show" role="alert">
             '.$data['message'].'
@@ -64,10 +65,10 @@ class ClientesController extends Controller
           </div>';
                         
           session()->flash('message', $message);
-            if(
-                $data['status']
-            ){ 
-            return redirect(route('comercios.mostrar'));
+            if($data['status']){ 
+                // return redirect(route('landing.mostrar'));
+                // echo json_encode($data);
+                return redirect('/inicio');
             }
 
             return redirect(Route('nuevo.cliente'));

@@ -89,9 +89,9 @@
   <center><h3 for="ubicacion">Ubicación</h3></center>
 </div>
   <label for="latitud">Latitud:</label>
-   <input type="number" class="form-control" id="latitud" name="latitud" step="0.000001" required>
+   <input type="number" class="form-control" id="latitud" name="latitud" step="000.000000000000001" required>
    <label for="longitud">Longitud:</label>
-   <input type="number" class="form-control" id="longitud" name="longitud" step="0.000001" required>
+   <input type="number" class="form-control" id="longitud" name="longitud" step="000.000000000000001" required>
    <label for="descripcion">Descripcion:</label>
    <textarea name="descripcion" id="descripcion" cols="30" rows="3" class="form-control"></textarea>
       </div>

@@ -4,43 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <style>
-div.container{
-    width: 80vw;
-    
-}
-div#divBody{
-    height: 80vh;
-}
-header {
-    background-m-2 color: #000;
-    padding: 10px;
-}
-footer {
-    background-m-2 color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position:relative;
-    width: 100%;
-    bottom: 0;
-}
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.logo h1 {
-    color: #fff;
-}
-div.col{
-    padding-right: 0px;
-}
-
-   </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Registro</title>
+    <link rel="stylesheet" href="{{ asset('/../resources/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('/../resources/css/registroCliente.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
 </head>
 <body>
     <header>
@@ -63,7 +32,7 @@ div.col{
             <div class="container  bg-opacity-10 bg-dark bg-gradient ">
                 <div class="row mt-2">
                     <div class="m-2 col-2">DNI:</div>
-                    <div class="m-2 col"><input required placeholder="Ingrese su numero de identidad" type="text" id="dni" name="dni" class="form-control"></div>
+                    <div class="m-2 col"><input required placeholder="Ingrese su numero de identidad" type="text" id="dni" name="dni" class="form-control" minlength="13" maxlength="13" ></div>
                 </div>
             </div>
             <div class="container">
@@ -93,7 +62,7 @@ div.col{
             <div class="container">
                 <div class="row mt-2">
                     <div class="m-2 col-2">Telefono:</div>
-                    <div class="m-2 col form-contr"><input required placeholder="Ingrese su numero de telefono" type="number" id="telefono" name="telefono" class="form-control"></div>
+                    <div class="m-2 col form-contr"><input required placeholder="Ingrese su numero de telefono" type="text" id="telefono" name="telefono" class="form-control" minlength="8" maxlength="8"></div>
                 </div>
             </div>
             <div class="container  bg-opacity-10 bg-dark bg-gradient ">
@@ -120,13 +89,21 @@ div.col{
                     <div class="m-2 col"> <button  type="submit" class="form-control btn btn-primary">Registrarse</button></div>
                 </div>
             </div>
-           
+        
         </form>
     </div>
-    </section>
-    
+</section>
+
     <footer>
         <p>© 2024 Delivery App</p>
     </footer>
+    <script>
+        let registroButton = document.querySelector("[type=submit]");
+        registroButton.addEventListener("click", function () {
+            const correo = document.querySelector("#correo");
+            localStorage.setItem("carrito",null);
+            localStorage.setItem("correo", correo.value);
+        })
+    </script>
 </body>
 </html>
